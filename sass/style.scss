@@ -1,0 +1,13 @@
+header{
+    height: 90vh;
+    position: relative;
+    .text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform : translate(-50%,-50%);
+        transform : translate(-50%,-50%);
+        width: 50vw;
+        text-align: center;
+    }
+    }
