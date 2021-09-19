@@ -1,0 +1,116 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: auto;
+            height: auto;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": 0, "label": "1985", "shape": "dot"}, {"id": 1, "label": "6", "shape": "dot"}, {"id": 2, "label": "60", "shape": "dot"}, {"id": 3, "label": "8", "shape": "dot"}, {"id": 4, "label": "\u3001", "shape": "dot"}, {"id": 5, "label": "\u3002", "shape": "dot"}, {"id": 6, "label": "\u304a", "shape": "dot"}, {"id": 7, "label": "\u304d\u3087\u3046", "shape": "dot"}, {"id": 8, "label": "\u3057", "shape": "dot"}, {"id": 9, "label": "\u305f", "shape": "dot"}, {"id": 10, "label": "\u3068", "shape": "dot"}, {"id": 11, "label": "\u306a\u308b", "shape": "dot"}, {"id": 12, "label": "\u306b", "shape": "dot"}, {"id": 13, "label": "\u306e", "shape": "dot"}, {"id": 14, "label": "\u306f", "shape": "dot"}, {"id": 15, "label": "\u3092", "shape": "dot"}, {"id": 16, "label": "\u5175\u5eab\u770c", "shape": "dot"}, {"id": 17, "label": "\u5357\u3042\u308f\u3058\u5e02\u798f\u826f\u4e19", "shape": "dot"}, {"id": 18, "label": "\u540a\u6a4b", "shape": "dot"}, {"id": 19, "label": "\u5927\u6bdb", "shape": "dot"}, {"id": 20, "label": "\u5927\u9cf4", "shape": "dot"}, {"id": 21, "label": "\u5b6b\u5d0e", "shape": "dot"}, {"id": 22, "label": "\u5cf6", "shape": "dot"}, {"id": 23, "label": "\u5e74", "shape": "dot"}, {"id": 24, "label": "\u5fb3\u5cf6\u770c", "shape": "dot"}, {"id": 25, "label": "\u65e5", "shape": "dot"}, {"id": 26, "label": "\u662d\u548c", "shape": "dot"}, {"id": 27, "label": "\u6700", "shape": "dot"}, {"id": 28, "label": "\u6708", "shape": "dot"}, {"id": 29, "label": "\u6d77\u5ce1", "shape": "dot"}, {"id": 30, "label": "\u6de1\u8def", "shape": "dot"}, {"id": 31, "label": "\u72ed", "shape": "dot"}, {"id": 32, "label": "\u7d50\u3076", "shape": "dot"}, {"id": 33, "label": "\u90e8", "shape": "dot"}, {"id": 34, "label": "\u9580\u5d0e", "shape": "dot"}, {"id": 35, "label": "\u9580\u6a4b", "shape": "dot"}, {"id": 36, "label": "\u958b\u901a", "shape": "dot"}, {"id": 37, "label": "\u9593", "shape": "dot"}, {"id": 38, "label": "\u9cf4\u9580", "shape": "dot"}, {"id": 39, "label": "\u9cf4\u9580\u5e02\u9cf4\u9580\u753a\u571f\u4f50\u6cca\u6d66", "shape": "dot"}, {"id": 40, "label": "\uff08", "shape": "dot"}, {"id": 41, "label": "\uff09", "shape": "dot"}]);
+        edges = new vis.DataSet([{"arrowStrikethrough": false, "arrows": "to", "from": 20, "label": "compound", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 35, "label": "nsubj", "to": 18}, {"arrowStrikethrough": false, "arrows": "to", "from": 40, "label": "punct", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 6, "label": "compound", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 6, "label": "compound", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 11, "label": "compound", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 10, "label": "case", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 7, "label": "compound", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 41, "label": "punct", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 14, "label": "case", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 4, "label": "punct", "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 16, "label": "nmod", "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 13, "label": "case", "to": 16}, {"arrowStrikethrough": false, "arrows": "to", "from": 17, "label": "nmod", "to": 18}, {"arrowStrikethrough": false, "arrows": "to", "from": 40, "label": "punct", "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 30, "label": "compound", "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 22, "label": "compound", "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 34, "label": "compound", "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 41, "label": "punct", "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 10, "label": "case", "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 24, "label": "nmod", "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 13, "label": "case", "to": 24}, {"arrowStrikethrough": false, "arrows": "to", "from": 39, "label": "nmod", "to": 29}, {"arrowStrikethrough": false, "arrows": "to", "from": 40, "label": "punct", "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 19, "label": "compound", "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 22, "label": "compound", "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 21, "label": "compound", "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 41, "label": "punct", "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 37, "label": "compound", "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 13, "label": "case", "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 38, "label": "compound", "to": 29}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "label": "nmod", "to": 33}, {"arrowStrikethrough": false, "arrows": "to", "from": 13, "label": "case", "to": 29}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "label": "compound", "to": 33}, {"arrowStrikethrough": false, "arrows": "to", "from": 31, "label": "compound", "to": 33}, {"arrowStrikethrough": false, "arrows": "to", "from": 33, "label": "obj", "to": 32}, {"arrowStrikethrough": false, "arrows": "to", "from": 15, "label": "case", "to": 33}, {"arrowStrikethrough": false, "arrows": "to", "from": 32, "label": "acl", "to": 18}, {"arrowStrikethrough": false, "arrows": "to", "from": 18, "label": "ROOT", "to": 18}, {"arrowStrikethrough": false, "arrows": "to", "from": 5, "label": "punct", "to": 18}, {"arrowStrikethrough": false, "arrows": "to", "from": 0, "label": "nummod", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 23, "label": "obl", "to": 36}, {"arrowStrikethrough": false, "arrows": "to", "from": 40, "label": "punct", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "label": "compound", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 2, "label": "compound", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 23, "label": "compound", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 41, "label": "punct", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 1, "label": "compound", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 28, "label": "compound", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 3, "label": "compound", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 25, "label": "compound", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 12, "label": "case", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 36, "label": "ROOT", "to": 36}, {"arrowStrikethrough": false, "arrows": "to", "from": 8, "label": "aux", "to": 36}, {"arrowStrikethrough": false, "arrows": "to", "from": 9, "label": "aux", "to": 36}, {"arrowStrikethrough": false, "arrows": "to", "from": 5, "label": "punct", "to": 36}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.2,
+            "damping": 0.09,
+            "nodeDistance": 500,
+            "springConstant": 0.05,
+            "springLength": 200
+        },
+        "solver": "repulsion",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
