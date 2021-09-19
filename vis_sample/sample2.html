@@ -1,0 +1,116 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: auto;
+            height: auto;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": 0, "label": "1", "shape": "dot"}, {"id": 1, "label": "\u3001", "shape": "dot"}, {"id": 2, "label": "\u3002", "shape": "dot"}, {"id": 3, "label": "\u3042\u308b", "shape": "dot"}, {"id": 4, "label": "\u3044\u308f", "shape": "dot"}, {"id": 5, "label": "\u304b\u3089", "shape": "dot"}, {"id": 6, "label": "\u3051", "shape": "dot"}, {"id": 7, "label": "\u3054\u3093", "shape": "dot"}, {"id": 8, "label": "\u305f", "shape": "dot"}, {"id": 9, "label": "\u305f\u304d", "shape": "dot"}, {"id": 10, "label": "\u3064", "shape": "dot"}, {"id": 11, "label": "\u3067", "shape": "dot"}, {"id": 12, "label": "\u3068", "shape": "dot"}, {"id": 13, "label": "\u306b", "shape": "dot"}, {"id": 14, "label": "\u306e", "shape": "dot"}, {"id": 15, "label": "\u306f", "shape": "dot"}, {"id": 16, "label": "\u3089\u308c", "shape": "dot"}, {"id": 17, "label": "\u308c\u308b", "shape": "dot"}, {"id": 18, "label": "\u30ce", "shape": "dot"}, {"id": 19, "label": "\u4e0a\u4eba", "shape": "dot"}, {"id": 20, "label": "\u4ecf\u6559", "shape": "dot"}, {"id": 21, "label": "\u4f1d\u3048", "shape": "dot"}, {"id": 22, "label": "\u52dd\u9053", "shape": "dot"}, {"id": 23, "label": "\u53b3\u7d4c", "shape": "dot"}, {"id": 24, "label": "\u540d\u3065\u3051", "shape": "dot"}, {"id": 25, "label": "\u6803\u6728\u770c\u65e5\u5149\u5e02", "shape": "dot"}, {"id": 26, "label": "\u6edd", "shape": "dot"}, {"id": 27, "label": "\u767a\u898b\u8005", "shape": "dot"}, {"id": 28, "label": "\u7d4c\u5178", "shape": "dot"}, {"id": 29, "label": "\u83ef", "shape": "dot"}, {"id": 30, "label": "\u83ef\u53b3", "shape": "dot"}, {"id": 31, "label": "\uff08", "shape": "dot"}, {"id": 32, "label": "\uff09", "shape": "dot"}]);
+        edges = new vis.DataSet([{"arrowStrikethrough": false, "arrows": "to", "from": 30, "label": "compound", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "label": "nsubj", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 31, "label": "punct", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 6, "label": "compound", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 7, "label": "dep", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 14, "label": "case", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 9, "label": "compound", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 1, "label": "punct", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 30, "label": "compound", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 14, "label": "case", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "label": "compound", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 1, "label": "punct", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 30, "label": "compound", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 18, "label": "case", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "label": "compound", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 32, "label": "punct", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 15, "label": "case", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 1, "label": "punct", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 25, "label": "obl", "to": 3}, {"arrowStrikethrough": false, "arrows": "to", "from": 13, "label": "case", "to": 25}, {"arrowStrikethrough": false, "arrows": "to", "from": 3, "label": "acl", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "label": "ROOT", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 2, "label": "punct", "to": 26}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "label": "nsubj", "to": 21}, {"arrowStrikethrough": false, "arrows": "to", "from": 15, "label": "case", "to": 27}, {"arrowStrikethrough": false, "arrows": "to", "from": 22, "label": "compound", "to": 19}, {"arrowStrikethrough": false, "arrows": "to", "from": 19, "label": "obl", "to": 21}, {"arrowStrikethrough": false, "arrows": "to", "from": 12, "label": "case", "to": 19}, {"arrowStrikethrough": false, "arrows": "to", "from": 21, "label": "advcl", "to": 24}, {"arrowStrikethrough": false, "arrows": "to", "from": 16, "label": "aux", "to": 21}, {"arrowStrikethrough": false, "arrows": "to", "from": 1, "label": "punct", "to": 21}, {"arrowStrikethrough": false, "arrows": "to", "from": 20, "label": "compound", "to": 28}, {"arrowStrikethrough": false, "arrows": "to", "from": 28, "label": "nmod", "to": 10}, {"arrowStrikethrough": false, "arrows": "to", "from": 14, "label": "case", "to": 28}, {"arrowStrikethrough": false, "arrows": "to", "from": 0, "label": "nummod", "to": 10}, {"arrowStrikethrough": false, "arrows": "to", "from": 10, "label": "acl", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 11, "label": "cop", "to": 10}, {"arrowStrikethrough": false, "arrows": "to", "from": 3, "label": "fixed", "to": 11}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "label": "compound", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 23, "label": "obl", "to": 24}, {"arrowStrikethrough": false, "arrows": "to", "from": 5, "label": "case", "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 24, "label": "ccomp", "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 16, "label": "aux", "to": 24}, {"arrowStrikethrough": false, "arrows": "to", "from": 8, "label": "aux", "to": 24}, {"arrowStrikethrough": false, "arrows": "to", "from": 12, "label": "case", "to": 24}, {"arrowStrikethrough": false, "arrows": "to", "from": 4, "label": "ROOT", "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 17, "label": "aux", "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 2, "label": "punct", "to": 4}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.2,
+            "damping": 0.09,
+            "nodeDistance": 500,
+            "springConstant": 0.05,
+            "springLength": 200
+        },
+        "solver": "repulsion",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
